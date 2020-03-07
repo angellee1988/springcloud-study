@@ -1,10 +1,17 @@
 server:
   port: 8000
 
-application:
-    name: springcloud-user
+eureka:
+  client:
+    serviceUrl:
+      #defaultZone: http://127.0.0.1:9000/eureka/
+      defaultZone: http://peer1:9001/eureka/,http://peer2:9002/eureka/
+  instance:
+    prefer-ip-address: true
 
 spring:
+  application:
+    name: springcloud-ms-user
   jpa:
     generate-ddl: false
     show-sql: true
@@ -19,6 +26,7 @@ spring:
     password: 123456
   #    schema: classpath:schema.sql    #指定数据库的建表脚本
   #    data: classpath:data.sql        #指定数据库的数据脚本
+
 
 
 logging:
@@ -36,4 +44,4 @@ info:
     java:
       source: @java.version@
       target: @java.version@
-
+    developer: jason

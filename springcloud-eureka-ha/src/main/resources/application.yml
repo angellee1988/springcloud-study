@@ -1,0 +1,43 @@
+
+#将配置用 --- 分成3段
+#构建双节点EUreka Server集群
+
+spring:
+  application:
+    name: springcloud-eureka-ha
+
+---
+
+spring:
+  profiles: peer1
+server:
+  port: 9001
+eureka:
+  instance:
+    hostname: peer1
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      #将自己注册到 peer2 Eureka上去
+      defaultZone: http://peer2:9002/eureka/
+
+---
+
+spring:
+  profiles: peer2
+server:
+  port: 9002
+eureka:
+  instance:
+    hostname: peer2
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      #将自己注册到 peer1 Eureka上去
+      defaultZone: http://peer1:9001/eureka/
+
+
+
+
