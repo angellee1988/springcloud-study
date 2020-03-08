@@ -16,6 +16,12 @@ public class MovieApplication {
         return new RestTemplate();
     }
 
+    @Bean
+    @LoadBalanced // 使用ribbon负载均衡
+    public RestTemplate ribbonTemplate() {
+        return new RestTemplate();
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(MovieApplication.class, args);
     }

@@ -22,11 +22,20 @@ public class MovieController {
     @Autowired
     private RestTemplate restTemplate;
     @Autowired
+    private RestTemplate ribbonTemplate;
+    @Autowired
     private DiscoveryClient discoveryClient;
+    @Autowired
+    private LoadBalancerClient loadBalancerClient;
 
     @GetMapping("user/{id}")
     public User findById(@PathVariable Long id) {
         return restTemplate.getForObject("http://127.0.0.1:7000/" + id, User.class);
+    }
+
+    @GetMapping("user/{id}/loadbalance")
+    public User findByIdWithLB(@PathVariable Long id) {
+        return ribbonTemplate.getForObject("http://springcloud-ms-user/" + id, User.class);
     }
 
     @GetMapping("user-instance")
@@ -35,4 +44,12 @@ public class MovieController {
         return instances;
     }
 
+    @GetMapping("log-instance")
+    public ServiceInstance logUserInstance() {
+        ServiceInstance serviceInstance = loadBalancerClient.choose("springcloud-ms-user");
+        // 打印当前选择的是哪个节点
+        logger.info("serviceId:{}, host:{}, port:{}", serviceInstance.getServiceId(),
+                serviceInstance.getHost(), serviceInstance.getPort());
+        return serviceInstance;
+    }
 }
