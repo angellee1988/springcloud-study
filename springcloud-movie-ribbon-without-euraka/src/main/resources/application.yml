@@ -1,0 +1,19 @@
+server:
+  port: 8002
+
+#脱离Eureka使用Ribbon负载均衡
+springcloud-ms-user:
+  ribbon:
+    listOfServers: 127.0.0.1:7000, 127.0.0.1:7001
+
+spring:
+  application:
+    name: springcloud-movie-ribbon-without-euraka
+
+logging:
+  level:
+    root: INFO
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+
