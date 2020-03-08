@@ -1,0 +1,33 @@
+server:
+  port: 8004
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:9000/eureka/
+  instance:
+    prefer-ip-address: true
+
+spring:
+  application:
+    name: springcloud-ms-movie-feign-custom
+
+
+logging:
+  level:
+    root: INFO
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+    #Feign接口的日志级别设置成DEBUG, 因为Feign的Logger.Level只对DEBUG做出响应
+    org.lee.springcloud.client.UserFeignClient: DEBUG
+
+
+#Feign对压缩的支持
+feign:
+  compression:
+    request:
+      enabled: true
+      mime-types: text/html,application/json,application/xml
+    response:
+      enabled: true

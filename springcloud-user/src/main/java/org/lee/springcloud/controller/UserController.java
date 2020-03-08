@@ -18,4 +18,10 @@ public class UserController {
         User one = userRepository.findOne(id);
         return one;
     }
+
+    @GetMapping("/get")
+    public User find(User user) {
+        User one = userRepository.findOne(user.getId());
+        return one;
+    }
 }
