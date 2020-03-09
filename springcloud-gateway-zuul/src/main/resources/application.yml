@@ -1,0 +1,25 @@
+server:
+  port: 9010
+
+spring:
+  application:
+    name: springcloud-zuul
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:9000/eureka/
+
+zuul:
+  #路由忽略服务
+  #    ignored-services: '*' #使用'*'可以忽略所有服务
+  ignored-services: springcloud-ms-movie-hystrix,springcloud-ms-movie-feign
+  routes:
+    springcloud-ms-user: /**
+#    springcloud-ms-movie: /user/**
+    springcloud-ms-movie:
+      path: /user/**
+      sensitive-headers: Cookie,Set-Cookie,Authorization
+      url: http://downstrean
+
+

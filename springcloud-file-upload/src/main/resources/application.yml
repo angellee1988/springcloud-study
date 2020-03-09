@@ -1,0 +1,29 @@
+server:
+  port: 8007
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:9000/eureka/
+  instance:
+    prefer-ip-address: true
+
+spring:
+  application:
+    name: springcloud-ms-file-upload
+  http:
+    multipart:
+      max-file-size: 50MB #默认1M
+      max-request-size: 100MB #默认10M
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+ribbon:
+  ConnectionTimeout: 3000
+  ReadTimeout: 60000
+
