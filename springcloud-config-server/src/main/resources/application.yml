@@ -1,0 +1,23 @@
+server:
+  port: 9100
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud: debug
+    org.springframework.boot: debug
+
+spring:
+  application:
+    name: springcloud-config-server
+  cloud:
+    config:
+      server:
+        git:
+          #配置git仓库地址
+          uri: https://gitee.com/angellee1988/springcloud-config-repo
+          #git仓库账号
+          username: angellee1988
+          #git仓库密码
+          password: lxj19881006
+

@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: microservice-config
+  cloud:
+    config:
+      uri: http://localhost:9100
+      profile: dev
+      label: master
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+
