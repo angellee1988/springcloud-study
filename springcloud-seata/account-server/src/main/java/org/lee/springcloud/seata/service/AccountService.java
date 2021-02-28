@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 
 @Slf4j
-@Service("accountServiceImpl")
+@Service
 public class AccountService {
 
     @Autowired
