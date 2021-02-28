@@ -1,0 +1,31 @@
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+    instance:
+        hostname: localhost
+        prefer-ip-address: true
+logging:
+    level:
+        org:
+            lee:
+                springcloud:
+                    seata: info
+mybatis:
+    mapperLocations: classpath:mapper/*.xml
+    typeAliasesPackage: org.lee.springcloud.seata.model
+server:
+    port: 8182
+spring:
+    application:
+        name: storage-server
+    cloud:
+        alibaba:
+            seata:
+                tx-service-group: seata_tx_group
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/seata-storage
+        username: root
+        password: 123456
+

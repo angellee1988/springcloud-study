@@ -1,0 +1,36 @@
+eureka:
+    instance:
+        hostname: localhost
+        prefer-ip-address: true
+    client:
+        serviceUrl:
+            defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+feign:
+    hystrix:
+        enabled: false
+    client:
+        config:
+            default:
+                connectTimeout: 60000
+                readTimeout: 60000
+logging:
+    level:
+        io:
+            seata: info
+mybatis:
+    mapperLocations: classpath:mapper/*.xml
+    typeAliasesPackage: org.lee.springcloud.seata.model
+server:
+    port: 8180
+spring:
+    application:
+        name: order-server
+    cloud:
+        alibaba:
+            seata:
+                tx-service-group: seata_tx_group
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/seata-order
+        username: root
+        password: 123456
