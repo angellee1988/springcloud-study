@@ -18,8 +18,12 @@ spring:
           enabled: true
       routes:
         - id: nacos-router #值随意，方便记忆并且在所有路由定义中唯一即可
-          uri: lb://hello-service #为固定写法，表示开启负载均衡；hello-service即服务在Nacos中注册的名字
+#          uri: lb://hello-service #为固定写法，表示开启负载均衡；hello-service即服务在Nacos中注册的名字
+          uri: http://127.0.0.1:8866  #目标微服务的请求地址和端口
           predicates:
+            # 匹配在指定的日期时间之后发生的请求  入参是ZonedDateTime类型
+            - After=2021-05-19T22:57:07.783+08:00[Asia/Shanghai]
+            - Cookie=username, jason
             - Path=/hello/** #使用"Path Route Predicate Factory"，规则为/hello开头的任意URI
       # 是否开启网关
       enabled: true
