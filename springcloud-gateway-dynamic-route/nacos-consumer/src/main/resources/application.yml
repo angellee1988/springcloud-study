@@ -1,0 +1,12 @@
+server:
+  port: 6002
+spring:
+  application:
+    name: dynamic-router-consumer
+  cloud:
+    nacos:
+      discovery:
+        register-enabled: true
+        server-addr: 127.0.0.1:8848
+        # dev 的命名空间（环境）
+        namespace: 51237e51-27df-433d-8f17-c5d5c9863e7e
